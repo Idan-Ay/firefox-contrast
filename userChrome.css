@@ -7,4 +7,27 @@ If you already have one, append the import statement below at the top of your us
 
 @import "natsumi/natsumi.css";
 
-/* You can import additional mods above, or add your own userchrome CSS below. */
+/* hides the title bar */
+#titlebar {
+  visibility: collapse;
+}
+
+/* hides the sidebar */
+#sidebar-header {
+  visibility: collapse !important;
+}
+
+#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar > .toolbar-items {
+  opacity: 0;
+  pointer-events: none;
+}
+#main-window:not([tabsintitlebar="true"]) #TabsToolbar {
+    visibility: collapse !important;
+}
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+  display: none;
+}
+.tab {
+  margin-left: 1px;
+  margin-right: 1px;
+ }

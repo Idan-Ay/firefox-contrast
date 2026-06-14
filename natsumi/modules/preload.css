@@ -1,31 +1,3 @@
-/*
-
-Natsumi Browser - Welcome to your personal internet.
-
-Copyright (c) 2024-present Green (@greeeen-dev)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-*/
-
-/* ==== Preload ==== */
-/* You are advised NOT to touch this unless you know what you're doing. */
 
 * {
   /* Colors */
@@ -39,7 +11,7 @@ SOFTWARE.
   --natsumi-colors-primary-foreground: color-mix(in srgb, var(--natsumi-primary-color) 80%, white 20%);
   --natsumi-colors-urlbar-background: color-mix(in srgb, var(--natsumi-primary-color) 10%, white 80%);
   --natsumi-ff-background-color: color-mix(in srgb, var(--natsumi-primary-color) 25%, white);
-  --natsumi-browser-border-color: rgba(0, 0, 0, 0.1);
+  --natsumi-browser-border-color: white;
 
   @media (prefers-color-scheme: dark) {
     --natsumi-colors-primary: color-mix(in srgb, var(--natsumi-primary-color) 20%, #1d1d1d 80%);
@@ -51,26 +23,20 @@ SOFTWARE.
     --natsumi-colors-primary-foreground: color-mix(in srgb, var(--natsumi-primary-color) 80%, white 20%);
     --natsumi-colors-urlbar-background: transparent;
     --natsumi-ff-background-color: color-mix(in srgb, var(--natsumi-primary-color) 15%, black);
-    --natsumi-browser-border-color: rgba(255, 255, 255, 0.1);
+    --natsumi-browser-border-color: white;
   }
 
-  --natsumi-ff-background: color-mix(in srgb, var(--natsumi-ff-background-color) 40%, transparent);
-
-  --natsumi-browser-separation: 6px;
-  --natsumi-browser-base-border-radius: 8px;
-  --natsumi-border-width: 1px;
-  --natsumi-tab-border-radius: 8px;
-
-  @media (-moz-platform: macos) or (-moz-platform: linux) {
-    --natsumi-tab-border-radius: 12px;
-  }
+  --natsumi-browser-separation: 4px;
+  --natsumi-browser-base-border-radius: 4px;
+  --natsumi-border-width: 1.5px;
+  --natsumi-tab-border-radius: 4px;
 
   /* macOS 26 border radius */
   @media (-moz-mac-tahoe-theme) {
-    --natsumi-browser-base-border-radius: 12px;
+    --natsumi-browser-base-border-radius: 4px;
   }
 
-  --natsumi-browser-border-radius: max(calc(var(--natsumi-browser-base-border-radius) - calc(var(--natsumi-browser-separation) - 6px)), 8px);
+  --natsumi-browser-border-radius: max(calc(var(--natsumi-browser-base-border-radius) - calc(var(--natsumi-browser-separation) - 6px)), 4px);
 }
 
 .tabbrowser-tab {

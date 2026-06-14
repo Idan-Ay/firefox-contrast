@@ -1,30 +1,3 @@
-/*
-
-Natsumi Browser - Welcome to your personal internet.
-
-Copyright (c) 2024-present Green (@greeeen-dev)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-*/
-
-/* ==== Base theme ==== */
 
 #nav-bar {
   border: none !important;
@@ -37,7 +10,9 @@ body > * {
 :root:not([inDOMFullscreen="true"]):not([drawtitle]) {
   &[chromehidden=""] #browser:not([data-is-child="true"]) #tabbrowser-tabbox {
     margin-right: var(--natsumi-tabbox-margin-override, var(--natsumi-browser-separation)) !important;
+    margin-left: var(--natsumi-tabbox-margin-override, var(--natsumi-browser-separation)) !important;;
     margin-bottom: var(--natsumi-tabbox-margin-override, var(--natsumi-browser-separation)) !important;
+    margin-top: var(--natsumi-browser-separation) !important;
     box-shadow: none !important;
     outline: none !important;
 
@@ -100,13 +75,6 @@ body > * {
           margin: auto 0 !important;
         }
       }
-    }
-  }
-
-  &[chromehidden=""]:has(#sidebar-main[hidden], #sidebar-container[hidden]) {
-    #browser:not([data-is-child="true"]) #tabbrowser-tabbox {
-      margin-left: var(--natsumi-browser-separation) !important;
-      margin-right: var(--natsumi-browser-separation) !important;
     }
   }
 
@@ -192,22 +160,6 @@ body > * {
         }
       }
     }
-
-    @media not -moz-pref("sidebar.verticalTabs") {
-      body:not([natsumi-panel-sidebar-enabled]):not([natsumi-compact-mode]), body[natsumi-panel-sidebar-floating]:not([natsumi-compact-mode]) {
-        &:has(#sidebar-main[hidden], #sidebar-container[hidden]) #tabbrowser-tabbox:not(:has(#tabbrowser-tabpanels[splitview])) {
-          --natsumi-tabbox-margin-override: 0;
-          --natsumi-browser-separation: 0 !important;
-
-          .browserSidebarContainer {
-            border-left: none !important;
-            border-right: none !important;
-            border-bottom: none !important;
-            --natsumi-browser-border-radius-override: 0;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -223,7 +175,10 @@ body > * {
 #sidebar-box {
   padding: 0 !important;
   margin-bottom: var(--natsumi-browser-separation) !important;
-  border: 1px solid var(--natsumi-browser-border-color) !important;
+  margin-top: var(--natsumi-browser-separation) !important;
+  margin-left: var(--natsumi-tabbox-margin-override, var(--natsumi-browser-separation)) !important;;
+  margin-right: 0 !important;
+  border: 2px solid rgb(70,70,70) !important;
   border-radius: var(--natsumi-browser-border-radius) !important;
 }
 
@@ -231,28 +186,11 @@ body > * {
   width: 4px !important;
   border: none !important;
   margin-inline: calc(calc(var(--natsumi-browser-separation) - 4px) / 2) !important;
+  background-color: transparent !important;
 }
 
 #vertical-spacer {
   display: none !important;
-}
-
-:root[customizing] #sidebar-main:not([sidebar-launcher-expanded]), :root[customizing] #sidebar-container:not([sidebar-launcher-expanded]) {
-  #vertical-tabs {
-    min-width: unset !important;
-  }
-}
-
-#vertical-tabs {
-  -moz-window-dragging: drag;
-
-  &[collapsed="false"] {
-    visibility: visible;
-  }
-}
-
-#TabsToolbar {
-  margin-inline: var(--natsumi-browser-separation);
 }
 
 #nav-bar-customization-target, #PanelUI-button {
@@ -581,83 +519,6 @@ body > * {
   }
 }
 
-@media -moz-pref("natsumi.sidebar.hide-sidebar-controls") {
-  #vertical-tabs {
-    min-height: 100% !important;
-  }
-
-  #tabbrowser-tabs::after {
-    border-color: transparent !important;
-  }
-}
-
-/* Tabs clearer */
-#natsumi-tabs-clearer {
-  margin: 2px var(--tab-inner-inline-margin) !important;
-  gap: 8px;
-  -moz-window-dragging: no-drag;
-
-  @media -moz-pref("natsumi.sidebar.hide-clear-tabs") {
-    display: none !important;
-  }
-
-  #natsumi-tabs-clearer-separator {
-    flex: 1;
-    border-top: var(--tabstrip-inner-border) !important;
-    margin-block: auto !important;
-  }
-
-  #natsumi-tabs-clearer-button {
-    -moz-context-properties: stroke, fill;
-    stroke: currentColor;
-    color: currentColor;
-    transition: opacity 0.2s ease;
-    font-size: 11px;
-    padding-left: 15px !important;
-    background-image: url("../icons/lucide/clear-tabs.svg");
-    background-size: 11px;
-    background-repeat: no-repeat;
-    opacity: 0.4;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-}
-
-#tabbrowser-tabs[expanded] #natsumi-tabs-clearer {
-  @media -moz-pref("natsumi.sidebar.clear-merge-with-workspaces") {
-    display: none !important;
-  }
-}
-
-#tabbrowser-tabs:not([expanded]) #natsumi-tabs-clearer {
-  #natsumi-tabs-clearer-separator {
-    display: none !important;
-  }
-
-  #natsumi-tabs-clearer-button {
-    width: 12px;
-    height: 12px;
-    font-size: 0;
-    padding-left: 0 !important;
-    background-size: 12px;
-
-    @media -moz-pref("sidebar.verticalTabs") {
-      margin-inline: auto;
-      margin-bottom: 4px;
-    }
-
-    @media not -moz-pref("sidebar.verticalTabs") {
-      margin-block: auto !important;
-    }
-  }
-}
-
-#vertical-pinned-tabs-splitter[hidden="true"] {
-  display: none !important;
-}
-
 /* Downloads button */
 #downloads-button {
   --natsumi-downloads-color-light: color-mix(in srgb, var(--natsumi-primary-color) 70%, black);
@@ -690,58 +551,6 @@ body > * {
   background-color: transparent !important;
 }
 
-#natsumi-static-tabs-container {
-  max-height: 40%;
-  --natsumi-overflow-top-gradient: linear-gradient(to bottom, light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)) 0, transparent 16px);
-  --natsumi-overflow-bottom-gradient: linear-gradient(to top, light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)) 0, transparent 16px);
-  --natsumi-overflow-both-gradient: linear-gradient(to bottom, light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)) 0, transparent 16px, transparent calc(100% - 16px), light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05)) 100%);
-
-  &[orient="vertical"][overflowing] {
-    &:not([scrolledtostart]) {
-      background-image: var(--natsumi-overflow-top-gradient);
-    }
-
-    &:not([scrolledtoend]) {
-      background-image: var(--natsumi-overflow-bottom-gradient);
-    }
-
-    &:not([scrolledtostart]):not([scrolledtoend]) {
-      background-image: var(--natsumi-overflow-both-gradient) !important;
-    }
-  }
-}
-
 splitter:hover {
   background-color: light-dark(var(--natsumi-colors-primary), var(--natsumi-primary-color)) !important;
-}
-
-/* Add soft glow to web page */
-@media -moz-pref("natsumi.theme.soft-glow") {
-  #tabbrowser-tabpanels .deck-selected {
-    box-shadow: 0px 0px 30px light-dark(rgb(255, 255, 255), rgba(106, 106, 120, 0.7)) !important;
-  }
-}
-
-:root[sidebar-expand-on-hover] {
-  #sidebar-main, #sidebar-container {
-    background: transparent !important;
-  }
-
-  &:has(#sidebar-box[hidden]) #tabbrowser-tabbox, #sidebar-box {
-    &[sidebar-ongoing-animations] {
-      &[sidebar-launcher-expanded] {
-        animation: sidebar-hover-tabbox-extend 0.4s ease;
-        animation-fill-mode: forwards;
-      }
-
-      &:not([sidebar-launcher-expanded]) {
-        animation: sidebar-hover-tabbox-collapse 0.4s ease;
-        animation-fill-mode: forwards;
-      }
-    }
-
-    &:not([sidebar-ongoing-animations])[sidebar-launcher-expanded] {
-      margin-inline-start: var(--natsumi-sidebar-width) !important;
-    }
-  }
 }
